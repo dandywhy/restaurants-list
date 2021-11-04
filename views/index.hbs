@@ -37,9 +37,9 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>       
               <div class="row justify-content-around">
-                <a href="./restaurants/{{ this._id }}/edit" class="col-auto">Edit</a>
-                <a href="./restaurants/{{ this._id }}" class="col-auto">Detail</a>
-                <form class="col-auto" action="./delete/{{this._id}}" method="post">
+                <a href="/restaurants/{{ this._id }}/edit" class="col-auto">Edit</a>
+                <a href="/restaurants/{{ this._id }}" class="col-auto">Detail</a>
+                <form class="col-auto" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
                   <button type="submit" class="btn btn-outline-warning btn-sm">Delete</button>
                 </form>
               </div>     
