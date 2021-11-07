@@ -6,6 +6,7 @@ const routes = require('./routes')
 const app = express()
 
 require('./config/mongoose')
+// require('./routes/modules/sort')
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(routes)
+
 
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')

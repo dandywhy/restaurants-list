@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Restaurants = require('../../models/restaurant.js')
+const Restaurants = require('../../models/restaurant')
 
 
 
@@ -14,7 +14,6 @@ router.get('/:id', (req, res) => {
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.error(error))
-
 })
 
 // 顯示編輯頁面

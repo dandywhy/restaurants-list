@@ -2,15 +2,28 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
+      <h4 class="mb-2">尋找餐廳：</h4>
       <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{OriginKeyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+        <div class="d-flex">
+
+          <div class="input-group mr-4">
+            <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+              value="{{OriginKeyword}}" aria-describedby="search-button">
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
           </div>
-        </div>
+
+          <div class="input-group ml-4">
+            <select class="form-control" onchange="location = this.options[this.selectedIndex].value" id="sort" name="sort" aria-label="Default select example">
+              <option value="#">{{#if sortOptions}} {{sortOptions}} {{else}} 請選擇排序方式 {{/if}}</option>
+              <option value="/search/asc">A -> Z</option>
+              <option value="/search/desc">Z -> A</option>
+              <option value="/search/category">類別</option>
+              <option value="/search/location">地區</option>
+            </select>
+          </div>
+        </div>   
       </form>
     </div>
   </div>
@@ -35,16 +48,15 @@
               <span class="badge badge-pill badge-danger font-weight-normal">
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
-              </span>       
-              <div class="row justify-content-around">
-                <a href="/restaurants/{{ this._id }}/edit" class="col-auto">Edit</a>
-                <a href="/restaurants/{{ this._id }}" class="col-auto">Detail</a>
-                <form class="col-auto" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
-                  <button type="submit" class="btn btn-outline-warning btn-sm">Delete</button>
-                </form>
-              </div>     
-              
+              </span>
             </div>
+            <div class="row justify-content-end mb-3 mr-3 align-items-center">
+              <a href="/restaurants/{{ this._id }}/edit" class="btn btn-outline-secondary btn-sm mx-1">Edit</a>
+              <a href="/restaurants/{{ this._id }}" class="btn btn-outline-secondary btn-sm mx-1">Detail</a>
+              <form class="ml-4" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-outline-danger btn-sm">X</button>
+              </form>
+            </div>     
           </div>
         </a>
         {{/each}}
@@ -54,10 +66,12 @@
 </div>
 
 {{else}}
-
 <!-- none data message -->
 <div class="container mt-5 text-center">
   <p>搜尋不到符合字詞「<span class="text-danger">{{OriginKeyword}}</span>」的餐廳。請嘗試輸入其它關鍵字。</p>
 </div>
-
 {{/if}}
+
+
+<script src="/javascripts/sort.js"></script>
+
