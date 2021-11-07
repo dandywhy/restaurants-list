@@ -39,7 +39,15 @@
  ```bash 
  node app.js
  ```
-6. 當終端機出現以下文字，代表伺服器成功啟動：
+6. 先執行 seeds :
+ ```bash
+ npm run seed
+ ```
+7. 打開伺服器 :
+ ```bash
+ npm run dev
+ ```
+9. 當終端機出現以下文字，代表伺服器成功啟動：
  ```bash 
  App is running on http://localhost:3000
  ```
