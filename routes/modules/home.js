@@ -60,7 +60,7 @@ router.get('/search/:sort', (req, res) => {
     .then(restaurantsList => res.render('index', { restaurantsList, sortOptions }))
     .catch(error => console.log(error))
 })
-  
+
 
 
 // 匯出路由模組
