@@ -6,7 +6,8 @@ const Restaurants = require('../../models/restaurant')
 
 // 定義首頁路由，顯示所有餐廳
 router.get('/', (req, res) => {
-  Restaurants.find()
+  const userId = req.user._id
+  Restaurants.find({ userId })
     .lean()
     .then(restaurantsList => res.render('index', { restaurantsList }))
     .catch(error => console.error(error))
@@ -15,14 +16,14 @@ router.get('/', (req, res) => {
 // 搜尋餐廳
 router.get('/search', (req, res) => {
   const OriginKeyword = req.query.keyword
-
   if (!OriginKeyword) {
     res.redirect("/")
   }
   const keyword = OriginKeyword.trim()
   const regexKeyword = new RegExp(`${keyword}`, 'i')
-
-  Restaurants.find({ $or: [{ name: regexKeyword }, { category: regexKeyword }] })
+  const userId = req.user._id
+  Restaurants.find(
+    { $and: [{ userId }, { $or: [{ name: regexKeyword }, { category: regexKeyword }] }]})
     .lean()
     .then(restaurantsList => res.render('index', { restaurantsList, OriginKeyword }))
     .catch(error => console.log(error))
@@ -30,6 +31,7 @@ router.get('/search', (req, res) => {
 
 router.get('/search/:sort', (req, res) => {
   const sort = req.params.sort
+  const userId = req.user._id
   const selectedSort = {}
   let sortOptions = ''
 
@@ -53,8 +55,7 @@ router.get('/search/:sort', (req, res) => {
     default:
       selectedSort['_id'] = 'asc'
   }
-  console.log(selectedSort)
-  Restaurants.find()
+  Restaurants.find({ userId })
     .lean()
     .sort(selectedSort)
     .then(restaurantsList => res.render('index', { restaurantsList, sortOptions }))
