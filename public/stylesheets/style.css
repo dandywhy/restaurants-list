@@ -20,6 +20,10 @@ header {
   filter: blur(3px);
 }
 
+.btn-outline-info {
+  display: contents;
+}
+
 .search-bar .search-bar-outer {
   margin: 0 auto;
   max-width: 680px;
@@ -50,15 +54,17 @@ header {
   border-color: #ced4da;
 }
 
-.card {
+.card-login {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 470px;
+  height: 506px;
 }
 
-.card img{
+.card img {
   height: 180px;
 }
 
-.card-title{
+.card-title {
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
@@ -79,23 +85,19 @@ header {
 }
 
 @media screen and (max-width: 992px) {
-  
   .card img{
     height: 115px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  
   .restaurant-show-title {
     font-size: 2rem;
   }
 }
 
 @media screen and (max-width: 575px) {
-  
   .card img{
     height: auto;
   }
- 
 }

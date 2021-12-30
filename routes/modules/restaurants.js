@@ -1,4 +1,5 @@
 const express = require('express')
+const restaurant = require('../../models/restaurant')
 const router = express.Router()
 const Restaurants = require('../../models/restaurant')
 
@@ -19,6 +20,7 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
+
   return Restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
@@ -26,14 +28,21 @@ router.get('/:id/edit', (req, res) => {
 })
 // 修改編輯頁面
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  Restaurants.findByIdAndUpdate(id, req.body)
-    .then(() => res.redirect(`/restaurants/${id}/edit`))
+  const userId = req.user._id
+  const _id = req.params.id
+
+  return Restaurants.findOne({ _id, userId })
+    .then(restaurant => {
+      Object.assign(restaurant, req.body)
+      restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${_id}/edit`))
     .catch(error => console.log(error))
 })
 // 新增餐廳
 router.post('/new', (req, res) => {
   const userId = req.user._id
+
   req.body.userId = userId
   Restaurants.create(req.body)
     .then(() => res.redirect('/'))
@@ -41,8 +50,10 @@ router.post('/new', (req, res) => {
 })
 // 刪除餐廳
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  Restaurants.findByIdAndDelete(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurants.findOne({ _id, userId })
+    .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
