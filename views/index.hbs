@@ -67,11 +67,16 @@
 
 {{else}}
 <!-- none data message -->
-<div class="container mt-5 text-center">
-  <p>搜尋不到符合字詞「<span class="text-danger">{{OriginKeyword}}</span>」的餐廳。請嘗試輸入其它關鍵字。</p>
-</div>
+{{#if OriginKeyword}}
+  <div class="container mt-5 text-center">
+    <p>搜尋不到符合字詞「<span class="text-danger">{{OriginKeyword}}</span>」的餐廳。請嘗試輸入其它關鍵字。</p>
+  </div>
+{{else}}
+  <div class="container mt-5 text-center">
+    <h1>先新增喜愛的餐廳吧!</h1>
+  </div>
 {{/if}}
-
+{{/if}}
 
 <script src="/javascripts/sort.js"></script>
 
