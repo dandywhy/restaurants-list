@@ -20,9 +20,9 @@ const SEED_USER = [
 ]
 
 db.once('open', () => {
-  Promise.all(SEED_USER.map(async (seed_user) => {
+  Promise.all(SEED_USER.map((seed_user) => {
     const { email, password, list } = seed_user
-    await bcrypt
+    return bcrypt
       .genSalt(10)
       .then(salt => { return bcrypt.hash(password, salt) })
       .then(hash => { return User.create({ email, password: hash }) })
