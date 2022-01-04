@@ -1,6 +1,6 @@
 我的餐廳清單
 =
-![](https://github.com/dandywhy/restaurants-list/blob/main/public/img/A6-%E9%A4%90%E5%BB%B3%E4%B8%BB%E9%A0%81.png)
+![](https://github.com/dandywhy/restaurants-list/blob/main/public/img/%E6%B8%85%E5%96%AE%E7%95%AB%E9%9D%A2.jpg)
 
 
 介紹
@@ -17,6 +17,9 @@
 + [Node.js](https://nodejs.org/en/)
 + [Express](https://expressjs.com/zh-tw/)
 + [Express-handlebars](https://www.npmjs.com/package/express-handlebars)
++ [Express-session](https://www.npmjs.com/package/express-session)
++ [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
++ [Passport-facebook](https://www.npmjs.com/package/passport-facebook)
 + [Mongoose](https://mongoosejs.com/)
 
 開始使用
