@@ -20,7 +20,7 @@ const SEED_USER = [
 ]
 
 db.once('open', () => {
-  Promise.all(SEED_USER.map((seed_user) => {
+  Promise.all(SEED_USER.map(seed_user => {
     const { email, password, list } = seed_user
     return bcrypt
       .genSalt(10)

@@ -5,7 +5,6 @@
       <h4 class="mb-2">尋找餐廳: </h4>
       <form action="/search">
         <div class="d-flex">
-
           <div class="input-group mr-4">
             <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
               value="{{OriginKeyword}}" aria-describedby="search-button">
@@ -13,7 +12,6 @@
               <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
             </div>
           </div>
-
           <div class="input-group ml-4">
             <select class="form-control" onchange="location = this.options[this.selectedIndex].value" id="sort" name="sort" aria-label="Default select example">
               <option value="#">{{#if sortOptions}} {{sortOptions}} {{else}} 請選擇排序方式 {{/if}}</option>
